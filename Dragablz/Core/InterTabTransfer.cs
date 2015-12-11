@@ -22,10 +22,14 @@ namespace Dragablz.Core
         private readonly Point _itemPositionWithinHeader;
         private readonly Size _itemSize;
         private readonly IList<FloatingItemSnapShot> _floatingItemSnapShots;
-        private readonly bool _isTransposing;
         private readonly InterTabTransferReason _transferReason; 
 
-        public InterTabTransfer(object item, DragablzItem originatorContainer, Orientation breachOrientation, Point dragStartWindowOffset, Point dragStartItemOffset, Point itemPositionWithinHeader, Size itemSize, IList<FloatingItemSnapShot> floatingItemSnapShots, bool isTransposing)
+        public InterTabTransfer(
+            object item, DragablzItem originatorContainer,
+            Orientation breachOrientation, 
+            Point dragStartWindowOffset, Point dragStartItemOffset,
+            Point itemPositionWithinHeader, Size itemSize,
+            IList<FloatingItemSnapShot> floatingItemSnapShots)
         {
             if (item == null) throw new ArgumentNullException("item");
             if (originatorContainer == null) throw new ArgumentNullException("originatorContainer");
@@ -41,7 +45,6 @@ namespace Dragablz.Core
             _itemPositionWithinHeader = itemPositionWithinHeader;
             _itemSize = itemSize;
             _floatingItemSnapShots = floatingItemSnapShots;
-            _isTransposing = isTransposing;
         }
 
         public InterTabTransfer(object item, DragablzItem originatorContainer, Point dragStartItemOffset,
@@ -102,11 +105,6 @@ namespace Dragablz.Core
         public IList<FloatingItemSnapShot> FloatingItemSnapShots
         {
             get { return _floatingItemSnapShots; }
-        }
-
-        public bool IsTransposing
-        {
-            get { return _isTransposing; }
         }
     }
 }
